@@ -1,0 +1,12 @@
+.login-container {
+  display: block;
+  text-align: center;
+  margin: auto;
+}
+
+.button-wrapper {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
