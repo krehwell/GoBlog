@@ -12,7 +12,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import UiButton from './uiButton.js';
 
 const useStyles = makeStyles((theme) => ({
-  root: { maxWidth: 'auto', margin: "20px 0px" },
+  root: { margin: "20px 0px" },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
@@ -41,19 +41,22 @@ export default function RecipeReviewCard(props) {
   console.log(props)
   return (
     <Card variant="outlined" className={classes.root}>
+      {/* Card Header Title, CreatedAt*/}
       <CardHeader
         title={`${props.counter}. ${props.title}`}
         subheader={props.createdAt ? <>{props.createdAt.toDate().toString().slice(0, 24)}</> : null} >
       </CardHeader>
 
+      {/* Card Body Body */}
       <CardContent>
-        <Typography variant="body2" align="justify" component="p">
-          {expanded ? "======================"
+        <Typography align="justify" paragraph>
+          {expanded && props.allowExpand ? "============EXPANDED============"
             : <div>{props.body.slice(0, 200)}{props.additional}</div>}
         </Typography>
       </CardContent>
 
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      {/* Card Body if Expanded*/}
+      <Collapse in={expanded && props.allowExpand} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography align="justify" paragraph>
             {props.body}
@@ -61,6 +64,7 @@ export default function RecipeReviewCard(props) {
         </CardContent>
       </Collapse>
 
+      {/* Button to expand the card*/}
       {props.allowExpand &&
         <CardActions>
           <IconButton className={clsx(classes.expand, { [classes.expandOpen]: expanded, })}
@@ -70,10 +74,10 @@ export default function RecipeReviewCard(props) {
         </CardActions>
       }
 
+      {/* Button update and delete with id */}
       <span style={{ paddingLeft: 10, display: 'flex' }}>
         <UiButton variant="outlined" size="small" name="Update" function={() => props.updatePost(props.id, props.title, props.body)} />
         <UiButton variant="outlined" size="small" color="secondary" name="Delete" function={() => props.deletePost(props.id)} />
-
         <b style={{ marginLeft: "auto", marginTop: 8, paddingRight: 15 }}>id: {props.id}</b>
       </span>
 

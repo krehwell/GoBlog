@@ -43,6 +43,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
+          <h1 style={{ color: "white" }}>======== GOBLOG ========</h1>
           <Switch>
             <Route exact path={this.state.route} component={this.state.page} />
           </Switch>

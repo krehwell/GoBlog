@@ -1,6 +1,7 @@
 import React from "react";
 import "./Blog.css";
 import { auth, db, servertime } from "../firebase.js";
+import TextareaAutosize from "@material-ui/core/TextareaAutosize"
 import UiButton from './common/uiButton'
 import UiCard from './common/uiCard.js'
 
@@ -125,18 +126,22 @@ class Blog extends React.Component {
   render() {
     return (
       <div className="ArticleContainer">
-        <h1>GOBLOG</h1>
-        <h3>User: {this.props.email}</h3>
-        <UiButton size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
+        <span style={{ display: "inline" }}>
+          <UiButton size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out </UiButton>
+          <b>From: {this.props.email}</b>
+        </span>
         <br /><br />
 
         {/* ARTICLE HEADER TO ADD NEW ARTICLE */}
         <div className="AddArticle">
           <b>id of article: </b>
+          <br />
           <input readOnly name="id" value={this.state.id} />
           <form>
             <input name="title" onChange={this.onChange} type="text" placeholder="Title" value={this.state.title} />
-            <textarea name="body" onChange={this.onChange} placeholder="Enter Body" value={this.state.body} />
+            <br />
+            <TextareaAutosize id="uitextarea" rowsMin={5} rowsMax={60} name="body" onChange={this.onChange} placeholder="Enter Body" value={this.state.body} />
+            <br />
             <div className="btn-group">
               <input onClick={this.addPost} type="submit" value={this.state.buttonsubmit} />
               <input onClick={this.reset} type="button" value={"Reset/Cancel"} />
