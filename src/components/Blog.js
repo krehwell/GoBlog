@@ -9,7 +9,7 @@ class Blog extends React.Component {
     super(props);
     this.state = {
       uid: this.props.uid,
-      id: null,
+      id: "loading...",
       title: "",
       body: "",
       data: [],
@@ -127,7 +127,7 @@ class Blog extends React.Component {
       <div className="ArticleContainer">
         <h1>GOBLOG</h1>
         <h3>User: {this.props.email}</h3>
-        <UiButton type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
+        <UiButton size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
         <br /><br />
 
         {/* ARTICLE HEADER TO ADD NEW ARTICLE */}
@@ -149,6 +149,8 @@ class Blog extends React.Component {
           {this.state.data.length === 0 ? (<p>No post...</p>) : (
             this.state.data.map((post, counter) => (
               <UiCard
+                allowExpand={post.body.length < 200 ? false : true}
+                additional={post.body.length < 200 ? "" : "..."}
                 counter={this.state.data.length - counter}
                 title={post.title}
                 body={post.body}

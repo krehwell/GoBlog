@@ -32,12 +32,7 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [allowExpand, setAllowExpanded] = React.useState(true);
   const useEffect = React.useEffect
-
-  useEffect(() => {
-    if (props.body.length < 100) { setAllowExpanded(false) }
-  })
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -53,9 +48,8 @@ export default function RecipeReviewCard(props) {
 
       <CardContent>
         <Typography variant="body2" align="justify" component="p">
-          {props.body.length < 100 ? <div>{props.body}</div>
-            : expanded ? "======================"
-              : <div>{props.body.slice(0, 200)}...</div>}
+          {expanded ? "======================"
+            : <div>{props.body.slice(0, 200)}{props.additional}</div>}
         </Typography>
       </CardContent>
 
@@ -67,7 +61,7 @@ export default function RecipeReviewCard(props) {
         </CardContent>
       </Collapse>
 
-      {allowExpand &&
+      {props.allowExpand &&
         <CardActions>
           <IconButton className={clsx(classes.expand, { [classes.expandOpen]: expanded, })}
             onClick={handleExpandClick} aria-expanded={expanded} >
@@ -76,11 +70,13 @@ export default function RecipeReviewCard(props) {
         </CardActions>
       }
 
-      <UiButton size="small" name="Update" function={() => props.updatePost(props.id, props.title, props.body)} />
-      <UiButton size="small" name="Delete" function={() => props.deletePost(props.id)} />
+      <span style={{ paddingLeft: 10, display: 'flex' }}>
+        <UiButton variant="outlined" size="small" name="Update" function={() => props.updatePost(props.id, props.title, props.body)} />
+        <UiButton variant="outlined" size="small" color="secondary" name="Delete" function={() => props.deletePost(props.id)} />
 
-      <b style={{ display: "flex", justifyContent: "flex-end" }}>id: {props.id}</b>
+        <b style={{ marginLeft: "auto", marginTop: 8, paddingRight: 15 }}>id: {props.id}</b>
+      </span>
 
-    </Card>
+    </Card >
   );
 }

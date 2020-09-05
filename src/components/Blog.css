@@ -3,7 +3,7 @@
 }
 
 .ArticleContainer {
-  width: 500px;
+  width: 600px;
   margin: 0 auto;
   margin-top: 20px;
 }
@@ -17,7 +17,7 @@
 .AddArticle input,
 .AddArticle textarea {
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
   min-width: 500px;
   height: auto;
   border-radius: 5px;
