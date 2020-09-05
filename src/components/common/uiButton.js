@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 export default function UiButton(props) {
   return (
     <Button
+      size={props.size}
       style={{ margin: 5 }}
       onClick={props.function}
       variant="contained"
