@@ -11,12 +11,18 @@ class Blog extends React.Component {
       title: "",
       body: "",
       data: [],
-      buttonsubmit: "Post"
+      buttonsubmit: "Post",
+      expandpost: false
     };
   }
 
   componentDidMount(){
-    document.getElementById('loading').outerHTML =""
+    if(this.state.uid){
+      document.getElementById('loading').outerHTML =""
+    }
+    else{
+      document.getElementById('loading').outerHTML ="Error 404, Page not Found"
+    }
     // call get request when program start
     this.getPost();
   }
@@ -138,12 +144,15 @@ class Blog extends React.Component {
         {/* ARTICLE MADE BY USER */}
         <div className="article">
           { this.state.data.length === 0 ? ( <p>No post...</p>) : (
-            this.state.data.map((post) => (
-              <article key={post.id}>
-                <h2>{post.id}. {post.title}</h2>
+            this.state.data.map((post, counter) => (
+              <article key={counter}>
+                <h2>{this.state.data.length - counter}. {post.title}</h2>
         {/* IMPORTANT FUCKING NOTES BELOW ON HOW TO HANDLE TRIVIAL ERROR ON TIMESTAMP || chck value using only the name and put ternary op there */}
-                <p><i>{post.createdAt && post.createdAt.toDate().toString().slice(0,24)}</i></p>
-                <p>{post.body > 300 ? post.body.substr(0, 300) + "..." : post.body}</p>
+                <div className="second-header">
+                <p><i>{(post.createdAt) && post.createdAt.toDate().toString().slice(0,24)}</i></p>
+                <p><b>id: {post.id}</b></p>
+                </div>
+                <p>{(post.body.length > 500 && this.state.expandpost === false) ? <div>{post.body.substr(0, 300) + "..."} (<b onClick={()=>this.setState({expandpost: true})}>expandpost</b>) </div> : post.body}</p>
                 <button onClick={() => this.deletePost(post.id) } className="delete">Delete</button>
                 <button onClick={() => this.updatePost(post.id, post.title, post.body)} className="edit">Edit</button>
               </article>

@@ -1,6 +1,9 @@
 import React from "react";
 import "./Login.css";
 import { auth } from "../firebase.js";
+import FormControl from '@material-ui/core/FormControl'
+import UiForm from './common/uiForm.js';
+import UiButton from './common/uiButton';
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -19,10 +22,11 @@ class LoginPage extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.login = this.login.bind(this);
     this.signup = this.signup.bind(this);
+    this.number = 0;
   }
 
   componentDidMount() {
-    document.getElementById('loading').outerHTML =""
+    document.getElementById('loading').outerHTML = ""
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({
@@ -50,7 +54,7 @@ class LoginPage extends React.Component {
 
   login(e) {
     e.preventDefault();
-    this.setState({errormessage: "Loading..."});
+    this.setState({ errormessage: "Loading..." });
     console.log("hitting the login button");
     let email = this.state.email;
     let password = this.state.password;
@@ -68,7 +72,7 @@ class LoginPage extends React.Component {
 
   signup(e) {
     e.preventDefault();
-    this.setState({errormessage: "Loading..."});
+    this.setState({ errormessage: "Loading..." });
     let email = this.state.email;
     let password = this.state.password;
     auth
@@ -80,30 +84,23 @@ class LoginPage extends React.Component {
       });
   }
 
-
-  handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
       <div className="login-container">
-        <h1>Welcome</h1>
+        <h1>Welcome to GOBLOG</h1>
         <h2>{this.state.useremail}</h2>
-        <h4>{this.state.errormessage}</h4>
-        <form>
-          <label htmlFor="email">Email</label> <br />
-          <input name="email" onChange={this.handleChange} value={this.state.email} className="email-form" type="email" required />
-          <br />
-          <label htmlFor="password">Password</label> <br />
-          <input name="password" onChange={this.handleChange} value={this.state.password} className="password-form" type="password" min="6" required /> <br />
-          <div className="button-wrapper">
-            {this.state.hide.login && ( <button type="submit" onClick={this.login}>Login</button>)}
-            {this.state.hide.signup && ( <button type="submit" onClick={this.signup}>Sign Up</button>)} 
-          </div>
-        </form>
+        <h4 style={{ color: "red" }}>{this.state.errormessage}</h4>
+
+        <FormControl>
+          <UiForm handleChange={this.handleChange} name="email" />
+          <UiForm handleChange={this.handleChange} name="password" type="password" />
+          <UiButton function={this.login} name="login" />
+          <UiButton function={this.signup} name="signup" />
+        </FormControl>
       </div>
     );
   }

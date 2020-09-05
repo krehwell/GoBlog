@@ -1,9 +1,9 @@
 import React from 'react';
 import Blog from './components/Blog.js';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './components/Login.js';
 import ErrorPage from './components/errorpage.js';
-import {auth} from './firebase';
+import { auth } from './firebase';
 
 class App extends React.Component {
   constructor(props) {
@@ -28,12 +28,6 @@ class App extends React.Component {
           window.location.pathname = "/login";
         }
       }
-    });
-  }
-
-  signout() {
-    auth.signOut().then(() => {
-      console.log("the user is signed out");
     });
   }
 
