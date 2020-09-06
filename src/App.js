@@ -2,7 +2,7 @@ import React from 'react';
 import Blog from './components/Blog.js';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginPage from './components/Login.js';
-import ErrorPage from './components/errorpage.js';
+// import ErrorPage from './components/errorpage.js';
 import { auth } from './firebase';
 
 class App extends React.Component {
@@ -43,7 +43,6 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <h1 style={{ color: "white" }}>======== GOBLOG ========</h1>
           <Switch>
             <Route exact path={this.state.route} component={this.state.page} />
           </Switch>

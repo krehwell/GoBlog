@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeReviewCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const useEffect = React.useEffect
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -40,7 +39,7 @@ export default function RecipeReviewCard(props) {
 
   console.log(props)
   return (
-    <Card variant="outlined" className={classes.root}>
+    <Card className={classes.root}>
       {/* Card Header Title, CreatedAt*/}
       <CardHeader
         title={`${props.counter}. ${props.title}`}

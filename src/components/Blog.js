@@ -106,7 +106,14 @@ class Blog extends React.Component {
 
   // ----- " Change the text of button to update " -----
   updatePost = (id, title, body) => {
-    if (this.state.buttonsubmit !== "Update") { this.setState({ id, title, body, buttonsubmit: "Update" }); }
+    // update content got an error while getting the new state 
+    let updatecontent = new Promise((resolve) => {
+      this.reset();
+      resolve();
+    })
+    updatecontent.then(() => {
+      if (this.state.buttonsubmit !== "Update") { this.setState({ id, title, body, buttonsubmit: "Update" }); }
+    })
   }
 
   reset = () => {
@@ -163,6 +170,7 @@ class Blog extends React.Component {
                 id={post.id}
                 updatePost={this.updatePost}
                 deletePost={this.deletePost}
+                reset={this.reset}
               />
             ))
           )}
