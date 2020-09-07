@@ -10,13 +10,14 @@ set shortmess=aoO
 badd +58 src/App.js
 badd +18 src/firebase.js
 badd +30 ~/init.vim
-badd +4 src/components/Login.js
+badd +1 src/components/Login.js
 badd +113 src/components/Blog.js
 badd +11 src/components/Login.css
 badd +5 src/components/Blog.css
 badd +41 src/components/errorpage.js
 badd +79 src/components/common/uiCard.js
 badd +11 src/components/common/UiButton.js
+badd +0 NERD_tree_1
 argglobal
 %argdel
 $argadd src/App.js
@@ -73,10 +74,6 @@ normal! zt
 normal! 0109|
 tabedit src/components/Login.js
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
@@ -84,20 +81,6 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 30 + 84) / 168)
-exe 'vert 2resize ' . ((&columns * 137 + 84) / 168)
-argglobal
-enew
-file NERD_tree_1
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-wincmd w
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -114,9 +97,6 @@ exe s:l
 normal! zt
 57
 normal! 035|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 30 + 84) / 168)
-exe 'vert 2resize ' . ((&columns * 137 + 84) / 168)
 tabedit src/components/common/UiButton.js
 set splitbelow splitright
 set nosplitbelow
@@ -167,7 +147,7 @@ exe s:l
 normal! zt
 1
 normal! 012|
-tabnext 1
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

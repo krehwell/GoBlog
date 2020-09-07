@@ -1,4 +1,5 @@
 import React from 'react';
+import marked from 'marked';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -37,7 +38,9 @@ export default function RecipeReviewCard(props) {
     setExpanded(!expanded);
   };
 
-  console.log(props)
+  const markedbody = marked(props.body);
+  const markedbodysliced = marked(props.body.slice(0, 200));
+  
   return (
     <Card className={classes.root}>
       {/* Card Header Title, CreatedAt*/}
@@ -50,7 +53,7 @@ export default function RecipeReviewCard(props) {
       <CardContent>
         <Typography align="justify" paragraph>
           {expanded && props.allowExpand ? "============EXPANDED============"
-            : <div>{props.body.slice(0, 200)}{props.additional}</div>}
+          : <div dangerouslySetInnerHTML={{ __html: markedbodysliced}}/>}
         </Typography>
       </CardContent>
 
@@ -58,7 +61,7 @@ export default function RecipeReviewCard(props) {
       <Collapse in={expanded && props.allowExpand} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography align="justify" paragraph>
-            {props.body}
+            <div dangerouslySetInnerHTML={{ __html: markedbody}}/>
           </Typography>
         </CardContent>
       </Collapse>

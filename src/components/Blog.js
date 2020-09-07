@@ -2,7 +2,7 @@ import React from "react";
 import "./Blog.css";
 import { auth, db, servertime } from "../firebase.js";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize"
-import UiButton from './common/uiButton'
+import UiButton from './common/uiButton.js'
 import UiCard from './common/uiCard.js'
 
 class Blog extends React.Component {
