@@ -10,7 +10,11 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import UiButton from './uiButton.js';
+import UiButton from './UiButton.js';
+import 'github-markdown-css';
+import Highlight from 'react-highlight';
+import DeleteIcon from '@material-ui/icons/DeleteOutlined';
+import EditIcon from '@material-ui/icons/EditOutlined';
 
 const useStyles = makeStyles((theme) => ({
   root: { margin: "20px 0px" },
@@ -52,8 +56,8 @@ export default function RecipeReviewCard(props) {
       {/* Card Body Body */}
       <CardContent>
         <Typography align="justify" paragraph>
-          {expanded && props.allowExpand ? "============EXPANDED============"
-          : <div dangerouslySetInnerHTML={{ __html: markedbodysliced}}/>}
+          {expanded && props.allowExpand ? <span style={{fontFamily:"Syne"}}>============EXPANDED============</span>
+          : <Highlight innerHTML={true} className="markdown-body">{markedbodysliced}</Highlight>}
         </Typography>
       </CardContent>
 
@@ -61,7 +65,9 @@ export default function RecipeReviewCard(props) {
       <Collapse in={expanded && props.allowExpand} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography align="justify" paragraph>
-            <div dangerouslySetInnerHTML={{ __html: markedbody}}/>
+            <Highlight className="markdown-body" innerHTML={true}>
+              {markedbody}
+            </Highlight>
           </Typography>
         </CardContent>
       </Collapse>
@@ -78,8 +84,8 @@ export default function RecipeReviewCard(props) {
 
       {/* Button update and delete with id */}
       <span style={{ paddingLeft: 10, display: 'flex' }}>
-        <UiButton variant="outlined" size="small" name="Update" function={() => props.updatePost(props.id, props.title, props.body)} />
-        <UiButton variant="outlined" size="small" color="secondary" name="Delete" function={() => props.deletePost(props.id)} />
+        <UiButton variant="outlined" size="small" icon={<EditIcon/>} name="Update" function={() => props.updatePost(props.id, props.title, props.body)} />
+        <UiButton variant="outlined" size="small" icon={<DeleteIcon/>} color="secondary" name="Delete" function={() => props.deletePost(props.id)} />
         <b style={{ marginLeft: "auto", marginTop: 8, paddingRight: 15 }}>id: {props.id}</b>
       </span>
 

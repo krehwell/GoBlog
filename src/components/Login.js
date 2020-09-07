@@ -91,7 +91,7 @@ class LoginPage extends React.Component {
   render() {
     return (
       <div className="login-container">
-        <h1>t(·̿Ĺ̯·̿ ̿)</h1>
+        <h1 className="fuckofucko" >t(·̿Ĺ̯·̿ ̿)</h1>
         <h2>{this.state.useremail}</h2>
         <h4 style={{ color: "red" }}>{this.state.errormessage}</h4>
 

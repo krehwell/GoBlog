@@ -2,8 +2,11 @@ import React from "react";
 import "./Blog.css";
 import { auth, db, servertime } from "../firebase.js";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize"
-import UiButton from './common/uiButton.js'
+import UiButton from './common/UiButton.js'
 import UiCard from './common/uiCard.js'
+import 'highlightjs/styles/github.css';
+import hljs from 'highlightjs';
+import ExitIcon from '@material-ui/icons/ExitToApp';
 
 class Blog extends React.Component {
   constructor(props) {
@@ -28,7 +31,18 @@ class Blog extends React.Component {
     }
     // call get request when program start
     this.getPost();
+    this.updateCodeSyntaxHighlighting();
   }
+
+  componentDidUpdate() {
+    this.updateCodeSyntaxHighlighting();
+  }
+
+  updateCodeSyntaxHighlighting = () => {
+    document.querySelectorAll("pre code").forEach(block => {
+      hljs.highlightBlock(block);
+    });
+  };
 
   componentWillUnmount() {
     // we have to unsubscribe when component unmounts, because we don't need to check for updates
@@ -69,7 +83,6 @@ class Blog extends React.Component {
           console.log("the post is posted successfully");
           this.setState({ title: "", body: "" });
         })
-        .catch((err) => console.log("we got error: " + err.message));
     }
 
     // ----- " UPDATE " -----
@@ -113,6 +126,7 @@ class Blog extends React.Component {
     })
     updatecontent.then(() => {
       if (this.state.buttonsubmit !== "Update") { this.setState({ id, title, body, buttonsubmit: "Update" }); }
+      document.documentElement.scrollTop = 0;
     })
   }
 
@@ -134,8 +148,8 @@ class Blog extends React.Component {
     return (
       <div className="ArticleContainer">
         <span style={{ display: "inline" }}>
-          <UiButton size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out </UiButton>
-          <b>From: {this.props.email}</b>
+          <UiButton icon={<ExitIcon/>} size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
+          <b className="emailuser">From: {this.props.email}</b>
         </span>
         <br /><br />
 
@@ -145,9 +159,9 @@ class Blog extends React.Component {
           <br />
           <input readOnly name="id" value={this.state.id} />
           <form>
-            <input name="title" onChange={this.onChange} type="text" placeholder="Title" value={this.state.title} />
+            <input tabIndex="1" name="title" onChange={this.onChange} type="text" placeholder="Title" value={this.state.title} />
             <br />
-            <TextareaAutosize id="uitextarea" rowsMin={5} rowsMax={60} name="body" onChange={this.onChange} placeholder="Enter Body" value={this.state.body} />
+              <TextareaAutosize id="uitextarea" rowsMin={6} rowsMax={70} name="body" onChange={this.onChange} placeholder="Enter Body (supports markdown)" value={this.state.body} />
             <br />
             <div className="btn-group">
               <input onClick={this.addPost} type="submit" value={this.state.buttonsubmit} />
@@ -158,7 +172,7 @@ class Blog extends React.Component {
 
         {/* ARTICLE MADE BY USER */}
         <div className="article">
-          {this.state.data.length === 0 ? (<p>No post...</p>) : (
+          {this.state.data.length === 0 ? (<p>No post...</p>) :(
             this.state.data.map((post, counter) => (
               <UiCard
                 allowExpand={post.body.length < 200 ? false : true}

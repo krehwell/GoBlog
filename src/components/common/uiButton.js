@@ -10,7 +10,9 @@ export default function UiButton(props) {
       variant={props.variant ? props.variant : "contained"}
       color={props.name === "login" ? "primary" : props.name === "signup" ? "secondary" : props.color}
       type="submit"
-      to={{ pathname: `/` }}>
+      to={{ pathname: `/` }}
+      startIcon={props.icon}
+      >
       {props.name}
     </Button>
   );
