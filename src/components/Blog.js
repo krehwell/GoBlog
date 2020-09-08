@@ -2,7 +2,7 @@ import React from "react";
 import "./Blog.css";
 import { auth, db, servertime } from "../firebase.js";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize"
-import UiButton from './common/UiButton.js'
+import UiButton from './common/uiButton.js'
 import UiCard from './common/uiCard.js'
 import 'highlightjs/styles/github.css';
 import hljs from 'highlightjs';
@@ -148,7 +148,7 @@ class Blog extends React.Component {
     return (
       <div className="ArticleContainer">
         <span style={{ display: "inline" }}>
-          <UiButton icon={<ExitIcon/>} size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
+          <UiButton tabIndex="-1" icon={<ExitIcon/>} size="small" color="secondary" type="button" name="sign out" function={this.signout}>Sign Out</UiButton>
           <b className="emailuser">From: {this.props.email}</b>
         </span>
         <br /><br />

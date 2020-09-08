@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# GOBLOG
 
-## Available Scripts
+this is a fun project made just to apply all the knowledge been learned after finish taking React course on freecodecamp.
 
-In the project directory, you can run:
+## Display
 
-### `npm start`
+### The app is deployed on heroku: [sexgod.herokuapp.com](https://sexgod.herokuapp.com)  
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![the project looks in gif](./githubimages/goblog.gif)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Dependencies
 
-### `npm test`
+1. React(js)
+2. MaterialUI - all ui been made using some pure css and most MaterialUI
+3. Firebase(firestore & firebase auth) - for db and authentication
+4. marked - markdown support
+5. github-markdown-css - styling the markdown
+6. react-highlight - code styling for markdown
+7. Google Font - of course for font, what else you hope
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- Login and Signup
+- User only be a able to see their post
+- Writes formatted code in notes
+- Update and Delete posts
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Issues and Improvement to be made
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- for whatever kind of reason the input is pretty slow
+- to make cleaner code
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# NOTE!!
 
-### `npm run eject`
+nobody will contribute to this but its ok but:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- since the firebase config is meant to be at the author(me)'s db so if this project is used then it will uploaded on my db.
+- in other to change db is just by editing the config on `./src/firebase.js` and replace it with your own sdk

@@ -10,7 +10,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import UiButton from './UiButton.js';
+import UiButton from './uiButton.js';
 import 'github-markdown-css';
 import Highlight from 'react-highlight';
 import DeleteIcon from '@material-ui/icons/DeleteOutlined';
