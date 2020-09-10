@@ -47,6 +47,7 @@ class Blog extends React.Component {
   componentWillUnmount() {
     // we have to unsubscribe when component unmounts, because we don't need to check for updates
     this.unsubscribe()
+    console.log("UNSUBS");
   }
 
   // ----- " GET REQUEST " ------
