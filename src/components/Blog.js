@@ -4,8 +4,8 @@ import { auth, db, servertime } from "../firebase.js";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize"
 import UiButton from './common/uiButton.js'
 import UiCard from './common/uiCard.js'
-import 'highlightjs/styles/github.css';
-import hljs from 'highlightjs';
+import 'highlight.js/styles/github.css';
+import hljs from 'highlight.js';
 import ExitIcon from '@material-ui/icons/ExitToApp';
 
 class Blog extends React.Component {
