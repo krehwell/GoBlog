@@ -1,4 +1,4 @@
-# GOBLOG
+# Note10Net (Note Over the Internet)
 
 this is a fun project made just to apply all the knowledge been learned after finish taking React course on freecodecamp.
 
