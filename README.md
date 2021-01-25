@@ -1,4 +1,4 @@
-# Note10Net (Note Over the Internet)
+# Note10Net (Note Over Internet)
 
 this is a fun project made just to apply all the knowledge been learned after finish taking React course on freecodecamp.
 
